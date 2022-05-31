@@ -29,6 +29,30 @@ pipeline{
                 }
             }
         }
+
+        stage ('Push image to Artifactory') {
+            steps {
+                rtDockerPush(
+                    serverId: "artifactory-server",
+                    image: registry + '/helloimage:latest',
+                    // Host:
+                    // On OSX: "tcp://127.0.0.1:1234"
+                    // On Linux can be omitted or null
+                    //host: HOST_NAME,
+                    targetRepo: 'docker-1-local',
+                    // Attach custom properties to the published artifacts:
+                    properties: 'project-name=docker-1;status=stable'
+                )
+            }
+        }
+
+        stage ('Publish build info') {
+            steps {
+                rtPublishBuildInfo (
+                    serverId: "artifactory-server"
+                )
+            }
+        }
         
     }
 
