@@ -6,7 +6,7 @@ pipeline{
 
         DOCKER_TAG = getDockerTag()
 
-        registry = sunayana.jfrog.io/docker-local
+        registry = artifactory/docker-1-local
 
     }
 
