@@ -24,7 +24,7 @@ pipeline{
 
             steps{
 
-                sh "docker build . -t rajasekhar11022/helloimage:${DOCKER_TAG}"
+                sh "docker build . -t docker-local/helloimage:${DOCKER_TAG}"
             }
         }
 
@@ -32,7 +32,7 @@ pipeline{
             steps {
                 rtDockerPush(
                     serverId: "artifactory-server",
-                    image: rajasekhar11022 + '/hello-world:${DOCKER_TAG}',
+                    image: docker-local + '/helloimage:${DOCKER_TAG}',
                     // Host:
                     // On OSX: "tcp://127.0.0.1:1234"
                     // On Linux can be omitted or null
