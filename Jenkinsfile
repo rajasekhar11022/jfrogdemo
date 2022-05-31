@@ -24,7 +24,7 @@ pipeline{
 
             steps{
 
-                sh "docker build . -t docker-local/helloimage:${DOCKER_TAG}"
+                sh "docker build . -t docker-1-local/helloimage:${DOCKER_TAG}"
             }
         }
 
@@ -32,14 +32,14 @@ pipeline{
             steps {
                 rtDockerPush(
                     serverId: "artifactory-server",
-                    image: docker-local + '/helloimage:${DOCKER_TAG}',
+                    image: docker-1-local + '/helloimage:${DOCKER_TAG}',
                     // Host:
                     // On OSX: "tcp://127.0.0.1:1234"
                     // On Linux can be omitted or null
                     //host: HOST_NAME,
-                    targetRepo: 'docker-local',
+                    targetRepo: 'docker-1-local',
                     // Attach custom properties to the published artifacts:
-                    //properties: 'project-name=docker1;status=stable'
+                    properties: 'project-name=docker-1;status=stable'
                 )
             }
         }
