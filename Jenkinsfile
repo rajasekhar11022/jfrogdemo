@@ -16,8 +16,8 @@ pipeline{
             steps {
                 rtServer (
                     id: "artifactory-server",
-                    url: //sunayana.jfrog.io/
-                    credentialsId = "jfrog_credentials"
+                    url: "//sunayana.jfrog.io/",
+                    credentialsId: "jfrog_credentials"
                 )
             }
         }
