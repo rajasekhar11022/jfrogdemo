@@ -20,14 +20,6 @@ pipeline{
             }
         }
 
-        stage('Build Docker Image'){
-
-            steps{
-
-                sh "docker build . -t rajasekhar11022/helloimage:${DOCKER_TAG}"
-            }
-        }
-
     }
 
 }
