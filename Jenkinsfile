@@ -6,6 +6,8 @@ pipeline{
 
         DOCKER_TAG = getDockerTag()
 
+        registry = sunayana.jfrog.io/docker-local
+
     }
 
     stages{
@@ -20,38 +22,14 @@ pipeline{
             }
         }
 
-        stage('Build Docker Image'){
-
-            steps{
-
-                sh "docker build . -t local/helloimage:${DOCKER_TAG}"
-            }
-        }
-
-        stage ('Push image to Artifactory') {
+        stage ('Build docker image') {
             steps {
-                rtDockerPush(
-                    serverId: "artifactory-server",
-                    image: local/helloimage:${DOCKER_TAG},
-                    // Host:
-                    // On OSX: "tcp://127.0.0.1:1234"
-                    // On Linux can be omitted or null
-                    //host: HOST_NAME,
-                    targetRepo: 'local',
-                    // Attach custom properties to the published artifacts:
-                    properties: 'project-name=docker-1;status=stable'
-                )
+                script {
+                    docker.build(registry + '/helloimage:latest')
+                }
             }
         }
-
-        stage ('Publish build info') {
-            steps {
-                rtPublishBuildInfo (
-                    serverId: "artifactory-server"
-                )
-            }
-        }
-
+        
     }
 
 }
