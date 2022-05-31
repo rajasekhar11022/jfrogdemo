@@ -28,21 +28,18 @@ pipeline{
             }
         }
 
-        stage ('Push image to Artifactory') {
-            steps {
-                rtDockerPush(
-                    serverId: "artifactory-server",
-                    image: docker-local + '/helloimage:${DOCKER_TAG}',
-                    // Host:
-                    // On OSX: "tcp://127.0.0.1:1234"
-                    // On Linux can be omitted or null
-                    //host: HOST_NAME,
-                    targetRepo: 'docker-local',
-                    // Attach custom properties to the published artifacts:
-                    //properties: 'project-name=docker1;status=stable'
-                )
+        stage('JfrogRepo Push'){
+
+            steps{
+
+               withCredentials([usernameColonPassword(credentialsId: 'jfrog_credentials', variable: 'jfrog-repo')]) {
+
+                    sh "docker login -u sunayana.jfrog.io -p ${jfrog-repo}"
+
+                    //sh "docker push rajasekhar11022/helloimage:${DOCKER_TAG}"
+                }
             }
-        }
+        }          
 
         stage ('Publish build info') {
             steps {
