@@ -34,12 +34,12 @@ pipeline{
             steps {
                 rtDockerPull(
                     serverId: "artifactory-server",
-                    image:  '/hello-world',
+                    image:  '/hello-world:latest',
                     // Host:
                     // On OSX: "tcp://127.0.0.1:1234"
                     // On Linux can be omitted or null
                     //host: HOST_NAME,
-                    sourceRepo: 'docker-local',
+                    sourceRepo: 'docker-local'
                 )
             }
         }
