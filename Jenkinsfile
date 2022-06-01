@@ -36,6 +36,20 @@ pipeline{
 
                     sh "docker login sunayana.jfrog.io -u sunayanareddy1116@gmail.com -p ${jfrogPwd}"
 
+                    sh "docker push docker-local/helloimage:${DOCKER_TAG}"
+                }
+            }
+
+        }
+
+        stage ('Jfrog DockerImage Pull'){
+
+            steps{
+
+                withCredentials([string(credentialsId: 'sunayanajfrog', variable: 'jfrogPwd')]) {
+
+                    sh "docker login sunayana.jfrog.io -u sunayanareddy1116@gmail.com -p ${jfrogPwd}"
+
                     sh "docker pull sunayana.jfrog.io/docker-local/hello-world"
                 }
             }
