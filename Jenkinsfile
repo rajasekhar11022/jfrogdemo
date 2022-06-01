@@ -24,7 +24,7 @@ pipeline{
 
             steps{
 
-                sh "docker build . -t sunayanareddy1116@gmail.com/helloimage:${DOCKER_TAG}"
+                sh "docker build . -t docker-local/helloimage:${DOCKER_TAG}"
             }
         }
 
