@@ -33,7 +33,7 @@ pipeline{
         stage ('Pull an image from Artifactory') {
             steps {
                 rtDockerPull(
-                    serverId: "ARTIFACTORY_SERVER",
+                    serverId: "artifactory-server",
                     image: registry + '/hello-world:latest',
                     // Host:
                     // On OSX: "tcp://127.0.0.1:1234"
