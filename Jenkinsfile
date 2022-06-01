@@ -28,7 +28,7 @@ pipeline{
             }
         }
 
-        stage ('Jfrog DockerImage Pull'){
+        stage ('DockerImage Push to Jfrog'){
 
             steps{
 
