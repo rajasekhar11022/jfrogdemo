@@ -6,7 +6,7 @@ pipeline{
 
         DOCKER_TAG = getDockerTag()
 
-        registry = "artifactory/docker-local"
+        registry = "artifactory"
 
     }
 
