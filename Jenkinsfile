@@ -2,14 +2,6 @@ pipeline{
 
     agent any
 
-    //environment{
-
-      //  DOCKER_TAG = getDockerTag()
-
-        //registry = "sunayana.jfrog.io/artifactory/docker-local"
-
-    //}
-
     stages{
 
         stage ('Artifactory configuration') {
@@ -65,10 +57,3 @@ pipeline{
     }
 
 }
-
-//def getDockerTag(){
-
- //   def tag = sh script:'git rev-parse HEAD', returnStdout: true
-
-   // return tag
-//}
