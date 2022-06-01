@@ -24,7 +24,7 @@ pipeline{
 
             steps{
 
-                sh "docker build . -t docker-local/helloimage:${DOCKER_TAG}"
+                sh "docker build . -t sunayana.jfrog.io/docker-local/helloimage:${DOCKER_TAG}"
             }
         }
 
@@ -36,7 +36,7 @@ pipeline{
 
                     sh "docker login sunayana.jfrog.io -u sunayanareddy1116@gmail.com -p ${jfrogPwd}"
 
-                    sh "docker push docker-local/helloimage:${DOCKER_TAG}"
+                    sh "docker push sunayana.jfrog.io/docker-local/helloimage:${DOCKER_TAG}"
                 }
             }
 
