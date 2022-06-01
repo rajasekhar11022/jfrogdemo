@@ -6,7 +6,7 @@ pipeline{
 
         DOCKER_TAG = getDockerTag()
 
-        //registry = "artifactory"
+        registry = "sunayana.jfrog.io/artifactory/docker-local"
 
     }
 
@@ -34,7 +34,7 @@ pipeline{
             steps {
                 rtDockerPull(
                     serverId: "artifactory-server",
-                    image:  '/hello-world:latest',
+                    image:  registry + '/hello-world:latest',
                     // Host:
                     // On OSX: "tcp://127.0.0.1:1234"
                     // On Linux can be omitted or null
