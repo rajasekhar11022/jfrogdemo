@@ -50,19 +50,11 @@ pipeline{
 
                     sh "docker login sunayana.jfrog.io -u sunayanareddy1116@gmail.com -p ${jfrogPwd}"
 
-                    sh "docker pull sunayana.jfrog.io/docker-local/hello-world"
+                    sh "docker pull sunayana.jfrog.io/docker-local/helloimage:${DOCKER_TAG}"
                 }
             }
 
         }
-
-        //stage ('Build docker image') {
-          //  steps {
-            //    script {
-              //      docker.build(registry + '/helloimage:latest')
-                //}
-            //}
-        //}
         
     }
 
