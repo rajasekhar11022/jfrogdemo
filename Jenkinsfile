@@ -2,6 +2,12 @@ pipeline{
 
     agent any
 
+    environment{
+
+        DOCKER_TAG = getDockerTag()
+
+    }
+
     stages{
 
         stage ('Artifactory configuration') {
@@ -14,6 +20,14 @@ pipeline{
             }
         }
 
+        stage('Build Docker Image'){
+
+            steps{
+
+                sh "docker build . -t sunayanareddy1116@gmail.com/helloimage:${DOCKER_TAG}"
+            }
+        }
+
         stage ('Jfrog DockerImage Pull'){
 
             steps{
@@ -21,8 +35,10 @@ pipeline{
                 withCredentials([string(credentialsId: 'sunayanajfrog', variable: 'jfrogPwd')]) {
 
                     sh "docker login sunayana.jfrog.io -u sunayanareddy1116@gmail.com -p ${jfrogPwd}"
+
+                    sh "docker pull sunayana.jfrog.io/docker-local/hello-world"
                 }
-        }
+            }
 
         }
 
@@ -33,29 +49,14 @@ pipeline{
                 //}
             //}
         //}
-
-        //stage ('Pull an image from Artifactory') {
-            //steps {
-               // rtDockerPull(
-                  //  serverId: "artifactory-server",
-                //    image:  registry + '/hello-world:latest',
-                    // Host:
-                    // On OSX: "tcp://127.0.0.1:1234"
-                    // On Linux can be omitted or null
-                    //host: HOST_NAME,
-              //      sourceRepo: 'docker-local'
-            //    )
-          //  }
-        //}
-
-        //stage ('Publish build info') {
-          //  steps {
-            //    rtPublishBuildInfo (
-              //      serverId: "artifactory-server"
-                //)
-            //}
-        //}
         
     }
 
+}
+
+def getDockerTag(){
+
+    def tag = sh script:'git rev-parse HEAD', returnStdout: true
+
+    return tag
 }
