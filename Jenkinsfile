@@ -2,13 +2,13 @@ pipeline{
 
     agent any
 
-    environment{
+    //environment{
 
-        DOCKER_TAG = getDockerTag()
+      //  DOCKER_TAG = getDockerTag()
 
         //registry = "sunayana.jfrog.io/artifactory/docker-local"
 
-    }
+    //}
 
     stages{
 
