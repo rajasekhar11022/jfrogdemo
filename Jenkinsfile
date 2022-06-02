@@ -60,7 +60,7 @@ pipeline{
             steps {
                 xrayScan (
                     serverId: "artifactory-server",
-                    helloimage:"${DOCKER_TAG}"
+                    failBuild: true
                 )
             }
         }
