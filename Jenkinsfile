@@ -55,6 +55,15 @@ pipeline{
             }
 
         }
+
+        stage ('Xray scan') {
+            steps {
+                xrayScan (
+                    serverId: "artifactory-server",
+                    failBuild: false
+                )
+            }
+        }
         
     }
 
