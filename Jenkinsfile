@@ -57,11 +57,10 @@ pipeline{
         }
 
         stage ('Xray scan') {
+
             steps {
-                xrayScan (
-                    serverId: "artifactory-server",
-                    failBuild: true
-                )
+                
+                jf docker scan sunayana.jfrog.io/docker-local/helloimage:${DOCKER_TAG}
             }
         }
         
