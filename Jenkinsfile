@@ -60,7 +60,7 @@ pipeline{
 
             steps {
                 
-                jf docker scan sunayana.jfrog.io/docker-local/helloimage:${DOCKER_TAG}
+                sh "jf docker scan sunayana.jfrog.io/docker-local/helloimage:${DOCKER_TAG}"
             }
         }
         
