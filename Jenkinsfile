@@ -22,6 +22,7 @@ pipeline{
 
         stage ('Artifactory configuration installation') {
 
+        steps{
         sh '''
 
             curl -fL https://getcli.jfrog.io | bash -s v2
@@ -31,8 +32,9 @@ pipeline{
             ./jfrog pipc --server-id-resolve=repo-dev --repo-resolve=pypi
 
         '''
+        }
 
-       }
+        }
         
 
         stage('Build Docker Image'){
