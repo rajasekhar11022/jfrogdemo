@@ -20,6 +20,21 @@ pipeline{
             }
         }
 
+        stage ('Artifactory configuration installation') {
+
+        sh '''
+
+            curl -fL https://getcli.jfrog.io | bash -s v2
+
+            ./jfrog c add --url=https://sunayana.jfrog.io --user=sunayanareddy1116@gmail.com --password=AKCp8mZ8Sd4zdC4SwJzvNSXmsqYKmwbodx5YLygkH9U4NndtAMKrtz4Y3D9bE9aySm34SQYWa --interactive=false --overwrite
+
+            ./jfrog pipc --server-id-resolve=repo-dev --repo-resolve=pypi
+
+        '''
+
+       }
+        
+
         stage('Build Docker Image'){
 
             steps{
