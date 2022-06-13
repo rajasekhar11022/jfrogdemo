@@ -77,7 +77,7 @@ pipeline{
 
             steps {
                 
-                sh "jf docker scan sunayana.jfrog.io/packages/helloimage:93f4b1837d7c2e87690a8db1ca289fddc38e03f6"
+                sh "jf docker scan sunayana.jfrog.io/helloimage:93f4b1837d7c2e87690a8db1ca289fddc38e03f6"
             }
         }
         
