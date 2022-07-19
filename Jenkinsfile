@@ -1,6 +1,6 @@
 pipeline{
 
-    agent label 'jfscan-node'
+    agent {label 'jfscan-node'}
 
     environment{
 
