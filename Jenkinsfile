@@ -34,7 +34,7 @@ pipeline{
 
             curl -fL https://getcli.jfrog.io | bash -s v2
 
-            ./jfrog c add --url=https://devika.jfrog.io --user=sunayanareddy1106@gmail.com --password=AKCp8mZ8Sd4zdC4SwJzvNSXmsqYKmwbodx5YLygkH9U4NndtAMKrtz4Y3D9bE9aySm34SQYWa --interactive=false --overwrite
+            ./jfrog c add --url=https://devika.jfrog.io --user=sunayanareddy1106@gmail.com --password=cmVmdGtuOjAxOjE2ODk3NzA4MjU6bHQ4aHpUY3FsaVNLN3dSZDBTYzJQMnZ0bmp4 --interactive=false --overwrite
 
             ./jfrog pipc --server-id-resolve=repo-dev --repo-resolve=pypi
 
