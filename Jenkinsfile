@@ -46,7 +46,7 @@ pipeline{
 
         stage('Build Docker Image'){
 
-            agent {label 'jf-scan-docker-images'}
+            //agent {label 'jf-scan-docker-images'}
 
             steps{
 
@@ -56,7 +56,7 @@ pipeline{
 
         stage ('DockerImage Push to Jfrog'){
 
-            agent {label 'jf-scan-docker-images'}
+            //agent {label 'jf-scan-docker-images'}
 
             steps{
 
