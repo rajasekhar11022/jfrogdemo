@@ -1,6 +1,6 @@
 pipeline{
 
-    agent any
+    agent jfscan-node
 
     environment{
 
@@ -10,12 +10,15 @@ pipeline{
 
     stages{
 
+        
+
         stage ('Artifactory configuration') {
+
             steps {
                 rtServer (
                     id: "artifactory-server",
-                    url: "//sunayana.jfrog.io/artifactory",
-                    credentialsId: "sunayanajfrog"
+                    url: "//devika.jfrog.io/artifactory",
+                    credentialsId: "devikajfrog"
                 )
             }
         }
@@ -27,7 +30,7 @@ pipeline{
 
             curl -fL https://getcli.jfrog.io | bash -s v2
 
-            ./jfrog c add --url=https://sunayana.jfrog.io --user=sunayanareddy1116@gmail.com --password=AKCp8mZ8Sd4zdC4SwJzvNSXmsqYKmwbodx5YLygkH9U4NndtAMKrtz4Y3D9bE9aySm34SQYWa --interactive=false --overwrite
+            ./jfrog c add --url=https://devika.jfrog.io --user=sunayanareddy1106@gmail.com --password=AKCp8mZ8Sd4zdC4SwJzvNSXmsqYKmwbodx5YLygkH9U4NndtAMKrtz4Y3D9bE9aySm34SQYWa --interactive=false --overwrite
 
             ./jfrog pipc --server-id-resolve=repo-dev --repo-resolve=pypi
 
@@ -41,7 +44,7 @@ pipeline{
 
             steps{
 
-                sh "docker build . -t sunayana.jfrog.io/docker-local/helloimage:${DOCKER_TAG}"
+                sh "docker build . -t devika.jfrog.io/docker-local/helloimage:${DOCKER_TAG}"
             }
         }
 
@@ -49,11 +52,11 @@ pipeline{
 
             steps{
 
-                withCredentials([string(credentialsId: 'sunayanajfrog', variable: 'jfrogPwd')]) {
+                withCredentials([string(credentialsId: 'devikafrog', variable: 'jfrogPwd')]) {
 
-                    sh "docker login sunayana.jfrog.io -u sunayanareddy1116@gmail.com -p ${jfrogPwd}"
+                    sh "docker login devika.jfrog.io -u sunayanareddy1116@gmail.com -p ${jfrogPwd}"
 
-                    sh "docker push sunayana.jfrog.io/docker-local/helloimage:${DOCKER_TAG}"
+                    sh "docker push devika.jfrog.io/docker-local/helloimage:${DOCKER_TAG}"
                 }
             }
 
@@ -63,11 +66,11 @@ pipeline{
 
             steps{
 
-                withCredentials([string(credentialsId: 'sunayanajfrog', variable: 'jfrogPwd')]) {
+                withCredentials([string(credentialsId: 'devikajfrog', variable: 'jfrogPwd')]) {
 
-                    sh "docker login sunayana.jfrog.io -u sunayanareddy1116@gmail.com -p ${jfrogPwd}"
+                    sh "docker login devika.jfrog.io -u sunayanareddy1116@gmail.com -p ${jfrogPwd}"
 
-                    sh "docker pull sunayana.jfrog.io/docker-local/helloimage:${DOCKER_TAG}"
+                    sh "docker pull devika.jfrog.io/docker-local/helloimage:${DOCKER_TAG}"
                 }
             }
 
@@ -77,7 +80,7 @@ pipeline{
 
             steps {
                 
-                sh "jf docker scan sunayana.jfrog.io/docker-local/helloimage:93f4b1837d7c2e87690a8db1ca289fddc38e03f6 --format=json" 
+                sh "jf docker scan devika.jfrog.io/docker-local/helloimage:${DOCKER_TAG} --format=json" 
             }
         }
         
