@@ -1,6 +1,6 @@
 pipeline{
 
-    agent {label 'jf-scan-docker-images'}
+    agent any
 
     environment{
 
