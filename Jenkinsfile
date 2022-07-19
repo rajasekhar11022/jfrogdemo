@@ -14,6 +14,8 @@ pipeline{
 
         stage ('Artifactory configuration') {
 
+            agent {label 'jf-scan-docker-images'}
+
             steps {
                 rtServer (
                     id: "artifactory-server",
@@ -24,6 +26,8 @@ pipeline{
         }
 
         stage ('Artifactory configuration installation') {
+
+            agent {label 'jf-scan-docker-images'}
 
         steps{
         sh '''
@@ -42,6 +46,8 @@ pipeline{
 
         stage('Build Docker Image'){
 
+            agent {label 'jf-scan-docker-images'}
+
             steps{
 
                 sh "docker build . -t devika.jfrog.io/docker-local/helloimage:${DOCKER_TAG}"
@@ -49,6 +55,8 @@ pipeline{
         }
 
         stage ('DockerImage Push to Jfrog'){
+
+            agent {label 'jf-scan-docker-images'}
 
             steps{
 
@@ -64,6 +72,8 @@ pipeline{
 
         stage ('Jfrog DockerImage Pull'){
 
+            agent {label 'jf-scan-docker-images'}
+
             steps{
 
                 withCredentials([string(credentialsId: 'devikajfrog', variable: 'jfrogPwd')]) {
@@ -77,6 +87,8 @@ pipeline{
         }
 
         stage ('Xray scan') {
+
+            agent {label 'jf-scan-docker-images'}
 
             steps {
                 
