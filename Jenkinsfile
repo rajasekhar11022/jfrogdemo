@@ -50,7 +50,7 @@ pipeline{
 
             steps{
 
-                sh "docker build . -t devika.jfrog.io/docker-local/helloimage:${DOCKER_TAG}"
+                sh "sudo docker build . -t devika.jfrog.io/docker-local/helloimage:${DOCKER_TAG}"
             }
         }
 
