@@ -12,18 +12,18 @@ pipeline{
 
         
 
-        stage ('Artifactory configuration') {
+        // stage ('Artifactory configuration') {
 
-            agent {label 'jf-scan-docker-images'}
+        //     agent {label 'jf-scan-docker-images'}
 
-            steps {
-                rtServer (
-                    id: "artifactory-server",
-                    url: "//devika.jfrog.io/artifactory",
-                    credentialsId: "devikajfrog"
-                )
-            }
-        }
+        //     steps {
+        //         rtServer (
+        //             id: "artifactory-server",
+        //             url: "//devika.jfrog.io/artifactory",
+        //             credentialsId: "devikajfrog"
+        //         )
+        //     }
+        // }
 
         stage ('Artifactory configuration installation') {
 
